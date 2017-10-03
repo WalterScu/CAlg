@@ -1,0 +1,31 @@
+% ！TEX root=CAlg.tex
+\documentclass[twosides]{amsart}
+\usepackage{notestemplate}
+\usepackage[all]{xy}
+\title{Seminar Notes: Commutative Algebras}
+\author{Zou Haitao}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Rings and Ideals}
+\begin{secdefn}
+A \textbf{ring} $R$ is a set with two maps (addition) $+ : R \times R \rightarrow R$, (mutiplication)$\times : R \times R \rightarrow R$( denote $+(x,y)$ by $x+y$ and $\times (x,y)$ by $x \times y$)that satisfy following properties
+\begin{enumerate}
+\item R is a abelian group with respect to addtion, its identity is denoted by $0$;
+\item R is a monoid with identity $1 \in R$ with respect to multiplication;
+\item $z \times (x+y)= z \times x + z \times y$ and $(x+y) \times z = x \times z + y \times z$ for any given $x,y,z$.
+\end{enumerate}
+We typically write $xy$ for $x \times y$.
+\end{secdefn}
+In a ring $R$, if $1=0$, then $R$ has only one elements, it is trival and called \textbf{zero ring}. Denoted zero ring by 0.
+\begin{secdefn}
+Let $A$ and $B$ be two rings. $1_A$ and $1_B$ are their identities. A ring homomorphism from $A$ to $B$ is a map $f: A \rightarrow B$, which preserves both addition and multipication structure, that means, for any $x,y \in A$
+\[
+\begin{aligned}
+f(x +y) &=f(x) +f(y)\\
+f(xy) &= f(x) f(y)\\
+f(1_A)&=1_B
+\end{aligned}
+\]
+\end{secdefn}
+\end{document}
