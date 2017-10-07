@@ -1,5 +1,5 @@
 % ！TEX root=CAlg.tex
-\documentclass[twosides]{amsart}
+\documentclass{amsart}
 \usepackage{notestemplate}
 \usepackage[all]{xy}
 \title{Seminar Notes: Commutative Algebras}
@@ -9,17 +9,19 @@
 \tableofcontents
 \section{Rings and Ideals}
 \begin{secdefn}
-A \textbf{ring} $R$ is a set with two maps (addition) $+ : R \times R \rightarrow R$, (mutiplication)$\times : R \times R \rightarrow R$( denote $+(x,y)$ by $x+y$ and $\times (x,y)$ by $x \times y$)that satisfy following properties
+A \textbf{ring} $R$ is a set with two maps (addition) $+ : R \times R \rightarrow R$, (multiplication)$\times : R \times R \rightarrow R$( denote $+(x,y)$ by $x+y$ and $\times (x,y)$ by $x \times y$)that satisfy following properties
 \begin{enumerate}
-\item R is a abelian group with respect to addtion, its identity is denoted by $0$;
+\item R is a abelian group with respect to addition, its identity is denoted by $0$;
 \item R is a monoid with identity $1 \in R$ with respect to multiplication;
 \item $z \times (x+y)= z \times x + z \times y$ and $(x+y) \times z = x \times z + y \times z$ for any given $x,y,z$.
 \end{enumerate}
 We typically write $xy$ for $x \times y$.
 \end{secdefn}
 In a ring $R$, if $1=0$, then $R$ has only one elements, it is trival and called \textbf{zero ring}. Denoted zero ring by 0.
+
+ Suppose $R$ be a ring. R is commutative if for any $x,y \in R$, $xy=yx$. Rings mentioned in this notes will always be commutative other assumption.
 \begin{secdefn}
-Let $A$ and $B$ be two rings. $1_A$ and $1_B$ are their identities. A ring homomorphism from $A$ to $B$ is a map $f: A \rightarrow B$, which preserves both addition and multipication structure, that means, for any $x,y \in A$
+Let $A$ and $B$ be two rings. $1_A$ and $1_B$ are their identities. A ring homomorphism from $A$ to $B$ is a map $f: A \rightarrow B$, which preserves both addition and multiplication structure, that means, for any $x,y \in A$
 \[
 \begin{aligned}
 f(x +y) &=f(x) +f(y)\\
@@ -28,4 +30,155 @@ f(1_A)&=1_B
 \end{aligned}
 \]
 \end{secdefn}
+ Suppose $f: A \rightarrow B$ be a ring homomorphism. We have $f(0_A) = f(1_A - 1_A)=f(1_A) - f(1_A)= 1_B - 1_B = 0_B$.
+ \begin{enumerate}
+ \item If $f$ is surjective as map, then $f$ is called surjective homomorphism.
+ \item If $f$ is injective as map, then $f$ is called injective homomorphism.
+ \end{enumerate}
+\begin{secdefn}
+An \textbf{isomorphism} between two rings $A$ and $B$ is a ring homomorphism $f: A \rightarrow B$ such that there is another ring homomorphism $g:B \rightarrow A$ satisfying
+\[
+\begin{aligned}
+f \circ g = \id{B} & & g \circ f = \id{A}
+\end{aligned}
+\]
+\end{secdefn}
+\begin{rem}
+$f$ is isomorphism if and only if  $f$ is both surjective and injective as ring homomorphism.
+\end{rem}
+\begin{proof}
+If $f$ is isomorphism, then $f(x) = f(y)$ implies $g(f(x))=g(f(y))$. But $g \circ f = \id{A}$, so $x=y$. Hence $f$ is injective. For any $b \in B$, $b= f \circ g(b)$ since $f \circ g= \id{B}$. Let $a= g(b), b=f(a)$. That means $f$ is surjective. 
+
+If $f$ is both injective and surjective homomorphism, then we only need to check if $f^{-1}$ is ring homomorphism. $f(f^{-1}(b_1 + b_2)) = b_1 + b_2 = f \circ f^{-1} (b_1) + f \circ f^{-1}(b_2)= f(f^{-1}(b_1)+ f^{-1}(b_2))$. Since $f$ is surjective, $f^{-1}(b_1 + b_2) = f^{-1}(b_1) + f^{-1}(b_2)$.
+
+Similarly, $f^{-1}(b_1 b_2) = f^{-1}(b_1) f^{-1}(b_2)$.
+\end{proof}
+It is not always true in arbitrary category(\textbf{Top}, $\textbf{Sch}/k$, $\textbf{Mod}_k$, etc).
+
+If two rings are isomorphic, then we view them as same object in ring category.
+\begin{secdefn}
+Let $R$ be a ring. We call $i:\tilde{R}  \rightarrow R$ is a subring if $i$ is injective ring homomorphism, written as $\tilde{R} \subset R$
+\end{secdefn}
+\begin{rem}
+	The definition of subring in "Atiyah\& MacDonald" is not exact since it doesn't requrie $\tilde{R}$ to be even a ring.
+\end{rem}
+
+\begin{rem}
+	$i(\tilde{R}) \simeq \tilde{R}$, so $\tilde{R}$ can be viewed as $i(\tilde{R})$ whose elements are in $R$.
+\end{rem}
+\begin{secdefn}
+	Let $R$ be a ring, $I$ be an additive subgroup of $R$. $I$ is called an \textbf{ideal} of $R$ if for any $r \in R$
+\[
+\begin{aligned}
+&rI := { ra| a \in I} \subset I&\\
+&Ir := { ar| a \in I} \subset I&
+\end{aligned}
+\]
+Since $R$ is commutative, $Ir = rI$. We only need to check one of them. If $I$ is ideal of $R$, then we denote the fact by $I \subideal R$.
+
+An ideal $\mathfrak{p} \subideal R$ is called \textbf{prime ideal} if $xy \in \mathfrak{p}$ implies either $x \in \mathfrak{p}$ or $ y \in \mathfrak{p}$.
+
+An ideal $\mathfrak{m} \subideal R$ is called \textbf{maximal ideal} if $\mathfrak{m} \neq (1)$ and if there is no ideal $I$ such that $m \subsetneq I \subsetneq (1)$.
+\end{secdefn}
+
+\[
+\text{Ideal}(R):= \bigl\{ \text{ideals of } R\bigr\}
+\]
+
+Let $\varphi: A \rightarrow B$ be a ring homomorphism. Then there is induced map
+\[
+\begin{aligned}
+\varphi^{\#}: \text{Ideal}(B) &\rightarrow \text{Ideal}(A)\\
+\mathfrak{b} &\mapsto \varphi^{-1}(\mathfrak{b})
+\end{aligned}
+\] 
+For any $x,y \in \varphi^{-1}(\mathfrak{b})$, $\varphi(x+y)= \varphi(x) + \varphi(y) \in \mathfrak{b}$, $\varphi(ax)= \varphi(a)\varphi(x) \in \mathfrak{b}$ implies that $ax \in \varphi^{-1}(b)$. Hence $\varphi^{-1}(\mathfrak{b}) \in \text{Ideal}(A)$. Furthermore, it can be checked that $\varphi^{\#}$ is map from $\spec B$ to $\spec A$.
+
+\[
+\ker \varphi:= \bigl\{ a \in A| \varphi(a)=0\bigr\}= \varphi^{-1}((0))
+\]
+If $a_0 \in \ker \varphi$, then for any $a \in A$, $\varphi(a a_0) = \varphi(a) \varphi(a_0) =0$, so $a a_0 \in \ker \varphi$. Hence $\ker \varphi \in \text{Ideal}(A)$.
+Since $0$ is contained in any ideals, $\varphi^{\#}(\mathfrak{b})= \varphi^{-1}(\mathfrak{b}) \supset \ker \varphi$
+
+\begin{seclemma}
+	Let $I \subideal R$. Relation such that $\sim_{I}$ on R defined as $ x \sim_{I} y$ if and only if $x-y \in I$ is a equivalence relation.
+\end{seclemma}
+\begin{proof}
+	
+	\begin{enumerate}
+		\item $x-x = 0 \in I \Rightarrow x \sim_{I} x$
+		\item $x-y \in I \Rightarrow y-x = -(x-y) \in I \Rightarrow y \sim_{I}x$ 
+		\item $x \sim_{I} y, y \sim_{I} z \Rightarrow x-y \in I, y-z \in I \Rightarrow x-z =(x-y) + (y-z) \in I \Rightarrow x \sim_{I} z$.
+	\end{enumerate}
+\end{proof}
+
+\begin{secdefn}
+	Let $I$ be a ring
+	\[
+	\begin{aligned}
+		R/I &:= (R \big/ \sim_{I}, \times, +)\\
+		\bar{x} + \bar{y} &= \overline{x+y}\\
+		\bar{x} \times \bar{y} &= \overline{xy}
+	\end{aligned}
+	\]
+	is called quotient ring of $R$ by ideal $I$.
+\end{secdefn}
+\begin{rem}
+	It is easy to check $R/I$ is well defined
+	\[
+	\begin{aligned}
+	\varphi: R &\rightarrow R/I\\
+	r &\mapsto \bar{r}
+	\end{aligned}
+	\]
+	$\varphi(r_1 + r_2)= \overline{r_1 + r_2} = \bar{r_1} + \bar{r_2}= \varphi(r_1) + \varphi(r_2)$, $\varphi(r_1 r_2) = \overline{r_1 r_2} = \bar{r_1} \bar{r_2} = \varphi(r_1) \varphi(r_2)$ and $\overline{1_R} \bar{r} = \overline{1_R r} = \bar{r}$, so $\varphi(1_R)= \overline{1_R}$ is identity of $R/I$. Hence $\varphi$ is ring homomorphism. 
+\end{rem}
+FACT: 
+\begin{enumerate}
+	\item $\ker \varphi = I$;
+	\item $\varphi$ is surjective;
+	\item $\varphi^{\#}$ is injective. If $\varphi^{\#}(\bar{\alpha}) = \varphi^{\#}(\bar{\beta})$, then $\varphi^{-1}(\bar{\alpha})=\varphi^{-1}(\bar{\beta})$. $\varphi$ is surjective so $\bar{\alpha} = \bar{\beta}$.
+	\item If $\ker \varphi \subset I \subideal R$, then for any $\bar{i} \in \varphi(I)$, $\bar{r} \bar{i} = \overline{ri} = \varphi(ri)$ and $\varphi(I)$ is additive subgroup of $R/I$, $\varphi(I) \in \text{Ideal}(R/I)$. $\varphi$ is surjective, so $I= \varphi^{-1}(\varphi(I))= \varphi^{\#}(\varphi(I))$.
+\end{enumerate}
+(3) and (4) implies following proposition.
+\begin{secprop}
+	$\varphi^{\#}$ is one-to-one correspondence between $\text{Ideal}(B/I)$ and set of ideals contain $I$ in $R$.
+\end{secprop}
+\qed
+\begin{secdefn}
+	Let $R$ be a ring.
+	\begin{enumerate}
+		\item $x \in R$ is called \textbf{zero divisor} if there is $r \in R, r \neq 0$ such that $rx=0$.
+		\item $x \in R$ is called \textbf{nilpotent element} if $x^n=0$ for some $n > 0$.
+		\item $x \in R$ is an \textbf{unit} of $R$ if $x$ has inverse under multiplication.
+		\item If $R$ has no zero divisors except 0, then $R$ is called \textbf{integral domain}.
+	\end{enumerate}	
+\end{secdefn}
+\begin{rem}
+	A nilpotent element in a ring is always zero divisor since $x x^{n-1}=0$. If $x$ is a unit in $R$, then $x$ is not a zero divisor. Conversely, it is not always true.
+\end{rem}
+
+\begin{secdefn}
+	A \textbf{principal ideal} of $R$ is an ideal that can be generated by one element, written as $(x)$, where $x$ is the generator.
+\end{secdefn}
+For simple example, $(3,6) \subideal \mathbb{Z}$ is principal ideal generated by 6. $R$ itself is also a principal ideal since it can be generated by 1, written as $(1)$.
+
+Following are equivalent criteria for primes ideals and maximal ideals
+\begin{secprop}
+	Let $R$ be a ring.
+	\begin{enumerate}
+		\item $\mathfrak{p} \subideal R$ is prime ideal if and only if $R/\mathfrak{p}$ is integral domain.
+		\item $\mathfrak{m} \subideal R$ is maximal ideal if and only if $R/m$ is a field.
+	\end{enumerate}
+\end{secprop}
+\begin{proof}
+	\begin{enumerate}
+		\item Let $\mathfrak{p} \subideal R$ be a prime ideal. For any $x,y \in R$, $\bar{x},\bar{y} = \bar{0}$ is equivalent to $xy \in \mathfrak{p}$. But $xy \in \mathfrak{p}$ implies that either $x \in \mathfrak{p}$ or $y \in \mathfrak{p}$, equivalently, $\bar{x}=0$ or $\bar{y}=0$. This shows that $R/\mathfrak{p}$ is integral domain. 
+		
+		Conversly, if $R/\mathfrak{p}$ is ingegral domain, then for any $x,y \in R$ such that $xy \in \mathfrak{p}$, $\bar{x} \bar{y} = \bar{0}$ in $R/\mathfrak{p}$, we have $\bar{x}=\bar{0}$ or $\bar{y} = \bar{0}$. That means $x \in \mathfrak{p}$ or $y \in \mathfrak{p}$. Hence we can conclude the equivalence.
+		\item Let $\mathfrak{m} \subideal R$ be a maximal ideal. If $ \bar{x} \in R/\mathfrak{m}, \bar{x} \neq \bar{0}$, then $x \notin \mathfrak{m}$. Since $\mathfrak{m}$ is maximal, $m \subsetneq (\mathfrak{m}, x) \subset (1)$ implies that $(\mathfrak{m},1) = (1)$. That means, there exists $y \in R$ such that $xy =1 $. Obviously, $y \notin m$, so $\bar{x} \bar{y} = \bar{1}$. Hence each non-zero element in $R/\mathfrak{m}$ is unit. Hence $R/\mathfrak{m}$ is a field.
+		
+		Conversely, if $R/\mathfrak{m}$ is a field, then $\bar{x} \in R/\mathfrak{m}, \bar{x} \neq 0$ is unit. But $\bar{x} \neq \bar{0}$ is equivalent to $x \notin \mathfrak{m}$ and $\bar{x}$ is unit $R/\mathfrak{m}$ if and only if $x$ is unit in $R$. So $(\mathfrak{m}, x) = (1)$ if $x \notin \mathfrak{m}$. Hence $\mathfrak{m}$ is maximal. The proof is complete. 
+	\end{enumerate}
+\end{proof}
 \end{document}
