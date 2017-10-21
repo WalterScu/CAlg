@@ -51,3 +51,62 @@ $\spec R$ is quasi-compact.
 	\sum_i r_i f_i = 1
 	\] and only finite $a_i$ are not 0. Hence the correspondent finite $D_{f_k}$ form a finte cover of $\spec R$.
 \end{proof}
+\begin{secprop}[Separability of $\spec R$]
+	$\spec R$ is $T_0$ and $T_1$ as following figures show.
+\end{secprop}
+\begin{rem}
+	$\spec R$ is not Hausdorff if $R \neq 0$. Recall that in a Hausdorff space, each single point is closed point, i.e. $\overline{\text{pt}} = \text{pt}$. $(0) \in D_f, \forall f \in R, f \neq 0$, since $(0) \subsetneq (f)$. Hence $\{(0)\}$ is dense in $\spec R$. Hence $\{(0)\}$ is not closed, it implies that $\spec R$ is not Hausdorff. $(0)$ is called a \textbf{generic point} of $\spec R$.
+\end{rem}
+\begin{secprop}
+	$\mathfrak{p} \in \spec R$ is closed if and only if $\mathfrak{p}$ is maximal ideal.
+\end{secprop}
+\begin{proof}
+	Notice that 
+	\[
+	\overline{\{\mathfrak{p}\}} = \bigcap_{I \subseteq \mathfrak{p}}V(I) = V(\sum_{I \subseteq \mathfrak{p}}I) = V(\mathfrak{p})
+	\]
+	Hence $\overline{\{\mathfrak{p}\}}= \{ \mathfrak{p} \}$ implies $\mathfrak{p}$ is the unique ideal which contains $\mathfrak{p}$. Since $\mathfrak{p}$ is contained in a maximal ideal, and maximal ideals are all primes ideals, then $\mathfrak{p}$ is maximal.
+\end{proof}
+Suppose $A, B$ be two rings. $x,y \in \varphi^{-1} (\mathfrak{p})$ means $\varphi(xy) \in \mathfrak{p} \subideal A$. Hence $\varphi(x) \in \mathfrak{p}$ or $\varphi(y) \in \mathfrak{p}$. Hence $x \in \varphi^{-1} ( \mathfrak{p})$ or $y \in \varphi^{-1}(\mathfrak{p})$. 
+By upper statement, we can conclude that
+\[
+\begin{aligned}
+	\varphi^* : \spec B &\rightarrow \spec A&\\
+	\varphi^* (\mathfrak{p}) : &= \varphi^{-1}(\mathfrak{p})
+\end{aligned}
+\]
+is well defined.
+\begin{secprop}
+	\begin{enumerate}
+		\item $\varphi^*$ is continuous under Zariski topology.
+		\item $\varphi^*$ is dominant if and only if $\ker \varphi \subseteq \text{Rad}(R)=\sqrt{(0)}$
+	\end{enumerate}
+\end{secprop}
+\begin{proof}
+	\begin{enumerate}
+		\item $(\varphi^*)^{-1}(V(f))= \big\{ \mathfrak{p} \in \spec B | f \in\varphi^*(\mathfrak{p}) = \varphi^{-1}(\mathfrak{p}) \big\}$. It is equal to $V(\varphi(f))= \big\{\mathfrak{p} \in \spec B| \varphi(f) \in \mathfrak{p}  \big\}$. Hence the inverse image of any closed subset is also closed. This means $\varphi^*$is continuous.
+		\item Notice that 
+		\[
+		\varphi^*(\spec B) = \big\{ \varphi^{-1}(\mathfrak{p})| \mathfrak{p} \in \spec B)\big\} \subseteq V(\bigcap_{ \ker \varphi \subseteq \mathfrak{p}} \mathfrak{p}) = V(\sqrt{\ker \varphi}) \subseteq \spec A
+		\]
+		If $\overline{\varphi^* (\spec B)} = \spec A$. then by upper fact, we know $\sqrt{\ker \varphi}= \text{Rad} A$ since they are all radical ideal. This implies $\ker \varphi \subseteq \text{Rad} A$
+		
+		Conversely, 
+		\[
+		\overline{\varphi^* (\spec B)} = \overline{\varphi^* (V(0))} = V(\varphi^{-1}(0) )= V(\ker \varphi).
+		\]
+		Hence $\ker \varphi \subseteq \text{Rad}A$ implies $\spec A \subseteq V(\ker \varphi)$. Hence $\overline{\varphi^* (\spec B)} = \spec A$.
+	\end{enumerate}
+\end{proof}
+In particular, if $A$ is integral, then $\varphi^* : \spec B \rightarrow \spec A$ is dominant if and only if $\varphi$ is injective.
+\begin{ex}
+	Let $k$ be a algebraic closed field,
+	\[
+	\begin{aligned}
+	X&=\spec k[x_1, \cdots, x_n]/(f_1)& & \sheaf{X}= k[x_1, \cdots, x_n]/(f_1)\\
+	Y&=\spec k[x_1, \cdots, x_n]/(f_2)& &\sheaf{Y}=k[x_1, \cdots, x_n]/(f_2)
+	\end{aligned}
+	\]
+	where $f_1, f_2$ are inreducible polynomials over $k$. Denote $K_X$ and $K_Y$ the fraction field of $\sheaf(X)$ and $\sheaf{Y}$, they are called \textbf{function fields} of $X$ and $Y$. Obviously, $\sheaf{X}$ and $\sheaf{Y}$ are integral, hence by upper propsition, if $\varphi: Y \rightarrow X$ is dominant, then $\varphi$ induce an embedding from $\sheaf{X}$ to $\sheaf{Y}$. Furthermore, there is also an embedding from $K_X$ to $K_Y$, which can be looked as a field extension. It is also used to give a definition of dimesions for reduced irreducible affine schemes
+\end{ex}
+
